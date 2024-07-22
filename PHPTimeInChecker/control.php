@@ -14,8 +14,8 @@ if(isset($_POST['loanInput'])){
     $no_hrs = $Timecount ->h;
     $no_mins = $Timecount ->i;
     $no_secs = $Timecount ->s;
-    $timeInFormat = date_fromat($startTime, 'h:i A');
-    $timeOutFormat = date_fromat($endTime, 'h:i A');
+    $timeInFormat = date_format($startTime, 'h:i A');
+    $timeOutFormat = date_format($endTime, 'h:i A');
 	
     echo "time in:  $timeIn      <br/>";
     echo "time in Format:  $timeInFormat      <br/>";
