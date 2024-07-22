@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <title>Time Converter
+    </title>
+</head>
+<body>
+    <div class="container bg-secondary m-5 p-5 mx-auto user-select-none">
+        <h1 class="text-white">Time Converter</h1>
+        <button onclick="convert(1)" class="btn btn-success" >Hours to Minutes</button>
+        <button onclick="convert(2)" class="btn btn-primary">Minutes to Seconds</button>
+        <button onclick="convert(3)" class="btn btn-warning">Seconds to Milliseconds</button>
+        <button onclick="convert(4)" class="btn btn-info">Years to Months</button>
+    </div>
+
+    <div class="modal fade" tabindex="-1" id="aModal" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="head">Enter Value</h5>
+            </div>
+            <div class="modal-body">
+                <input type="number" class="form-control" id="num" placeholder="">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="convbtn" onclick="compute()">Convert</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cancbtn" onclick="reset()">Cancel</button>
+            </div>
+          </div>
+        </div>
+    </div>
+    
+     <div class="modal fade" tabindex="-1" id="alertModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="head">ERROR! Please try again.</h5>
+            </div>
+            <div class="modal-body">
+                <strong>                Please input a valid number!
+</strong>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+    </div>
+    <script> 
+        function convert(val){
+            mode = val
+            if(val == 1){
+                document.getElementById('num').setAttribute('placeholder', 'Enter number of hours')
+
+                var myModal = new bootstrap.Modal(document.getElementById('aModal'), {  keyboard: false });
+
+                myModal.show();
+            }else if(val == 2){
+                document.getElementById('num').setAttribute('placeholder', 'Enter number of minutes')
+                
+                var myModal = new bootstrap.Modal(document.getElementById('aModal'), {  keyboard: false });
+
+                myModal.show();
+            }else if(val == 3){
+                document.getElementById('num').setAttribute('placeholder', 'Enter number of seconds')
+                
+                var myModal = new bootstrap.Modal(document.getElementById('aModal'), {  keyboard: false });
+
+                myModal.show();
+            }else if(val == 4){
+                document.getElementById('num').setAttribute('placeholder', 'Enter number of years')
+                
+                var myModal = new bootstrap.Modal(document.getElementById('aModal'), {  keyboard: false });
+
+                myModal.show();
+            }
+        }
+
+        function compute(){
+            var num1 = document.getElementById('num').value
+
+            
+            if(num1 < 0 || num1 == ""){
+                var myModal = new bootstrap.Modal(document.getElementById('alertModal'));
+                myModal.show();
+            }else{
+                if(mode == 1 || mode == 2){
+                    var total= num1*60 
+                    document.getElementById('num').setAttribute('disabled', true)
+
+                    document.getElementById('convbtn').style.display = 'none';              
+                }
+                
+                else if(mode == 3){
+                var total = num1*1000
+                    document.getElementById('num').setAttribute('disabled', true)
+
+                    document.getElementById('convbtn').style.display = 'none';        
+                }
+
+                else if(mode == 4){
+                var total = num1*12
+                    document.getElementById('num').setAttribute('disabled', true)
+
+                    document.getElementById('convbtn').style.display = 'none';
+                }           
+                    document.getElementById('num').value = total;
+            }                          
+        }
+        function reset(){
+                document.getElementById('num').removeAttribute('disabled')
+
+                document.getElementById('convbtn').style.display = 'block';
+
+                document.getElementById('num').value = ""
+        }
+    </script>
+</body>
+</html>
